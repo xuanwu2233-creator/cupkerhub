@@ -1,13 +1,308 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CUPKer Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CUPKer Hub｜中石克学生信息索引</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Microsoft YaHei", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+      padding: 56px 20px 48px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 42px;
+      letter-spacing: 0.5px;
+    }
+
+    header p {
+      margin: 12px 0 0;
+      color: #dbeafe;
+      font-size: 18px;
+    }
+
+    .notice {
+      max-width: 980px;
+      margin: 24px auto 0;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: -28px auto 60px;
+      padding: 0 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .nav-card {
+      background: white;
+      border-radius: 18px;
+      padding: 22px 16px;
+      text-align: center;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .nav-card .icon {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .nav-card h3 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .nav-card p {
+      margin: 8px 0 0;
+      color: #6b7280;
+      font-size: 13px;
+    }
+
+    .active {
+      border: 2px solid #2563eb;
+    }
+
+    .section {
+      background: white;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-title span {
+      font-size: 30px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .section-desc {
+      color: #6b7280;
+      margin-top: -10px;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .teacher-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .teacher-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 20px;
+      background: #fafafa;
+    }
+
+    .teacher-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 4px 6px 4px 0;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 13px;
+    }
+
+    .teacher-card p {
+      margin: 10px 0;
+      line-height: 1.7;
+      color: #374151;
+    }
+
+    .teacher-card a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .teacher-card a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      padding: 30px 20px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .teacher-list {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial; text-align:center; margin-top:100px;">
+
+<body>
+  <header>
     <h1>CUPKer Hub</h1>
-    <p>By CUPKers, For CUPKers</p>
-    <p>网站建设中...</p>
+    <p>中石克学生信息索引｜By CUPKers, For CUPKers</p>
+    <div class="notice">
+      本站为学生自发整理的信息索引平台，内容仅供学习与参考，不代表学校官方立场。
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <div class="nav-card active">
+        <div class="icon">👨‍🏫</div>
+        <h3>教师资料</h3>
+        <p>已开放</p>
+      </div>
+
+      <div class="nav-card">
+        <div class="icon">📅</div>
+        <h3>近期活动</h3>
+        <p>建设中</p>
+      </div>
+
+      <div class="nav-card">
+        <div class="icon">📢</div>
+        <h3>校园通知</h3>
+        <p>建设中</p>
+      </div>
+
+      <div class="nav-card">
+        <div class="icon">📚</div>
+        <h3>课程资料</h3>
+        <p>建设中</p>
+      </div>
+
+      <div class="nav-card">
+        <div class="icon">🧭</div>
+        <h3>校园指南</h3>
+        <p>建设中</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-title">
+        <span>👨‍🏫</span>
+        <h2>教师资料</h2>
+      </div>
+
+      <p class="section-desc">
+        收录校区教师的公开信息，包括研究方向、所属学院、课题组方向、主页链接等。
+        当前为测试页面，后续可逐步补充与完善。
+      </p>
+
+      <div class="teacher-list">
+        <div class="teacher-card">
+          <h3>教师姓名待补充</h3>
+          <div>
+            <span class="tag">所属学院待补充</span>
+            <span class="tag">研究方向待补充</span>
+          </div>
+          <p>
+            简介：这里可以填写教师的研究方向、课题组信息、主要课程或公开主页内容。
+          </p>
+          <p>
+            链接：<a href="#" target="_blank">教师主页待补充</a>
+          </p>
+        </div>
+
+        <div class="teacher-card">
+          <h3>教师姓名待补充</h3>
+          <div>
+            <span class="tag">所属学院待补充</span>
+            <span class="tag">研究方向待补充</span>
+          </div>
+          <p>
+            简介：这里可以填写教师的研究方向、课题组信息、主要课程或公开主页内容。
+          </p>
+          <p>
+            链接：<a href="#" target="_blank">教师主页待补充</a>
+          </p>
+        </div>
+
+        <div class="teacher-card">
+          <h3>教师姓名待补充</h3>
+          <div>
+            <span class="tag">所属学院待补充</span>
+            <span class="tag">研究方向待补充</span>
+          </div>
+          <p>
+            简介：这里可以填写教师的研究方向、课题组信息、主要课程或公开主页内容。
+          </p>
+          <p>
+            链接：<a href="#" target="_blank">教师主页待补充</a>
+          </p>
+        </div>
+
+        <div class="teacher-card">
+          <h3>教师姓名待补充</h3>
+          <div>
+            <span class="tag">所属学院待补充</span>
+            <span class="tag">研究方向待补充</span>
+          </div>
+          <p>
+            简介：这里可以填写教师的研究方向、课题组信息、主要课程或公开主页内容。
+          </p>
+          <p>
+            链接：<a href="#" target="_blank">教师主页待补充</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 CUPKer Hub｜学生自发建设的信息索引项目
+  </footer>
 </body>
 </html>
