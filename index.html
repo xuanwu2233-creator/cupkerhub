@@ -121,6 +121,43 @@
       line-height: 1.7;
     }
 
+    .college-block {
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 22px;
+      background: #f9fafb;
+      margin-bottom: 22px;
+    }
+
+    .college-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .college-header h3 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .college-header p {
+      margin: 8px 0 0;
+      color: #6b7280;
+      line-height: 1.7;
+    }
+
+    .college-badge {
+      flex-shrink: 0;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
     .teacher-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -131,7 +168,13 @@
       border: 1px solid #e5e7eb;
       border-radius: 18px;
       padding: 20px;
-      background: #fafafa;
+      background: white;
+      transition: 0.2s ease;
+    }
+
+    .teacher-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
     }
 
     .teacher-card h3 {
@@ -158,11 +201,21 @@
     .teacher-card a {
       color: #2563eb;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .teacher-card a:hover {
       text-decoration: underline;
+    }
+
+    .coming-soon {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 18px;
+      background: #f3f4f6;
+      color: #6b7280;
+      line-height: 1.7;
+      font-size: 15px;
     }
 
     footer {
@@ -179,6 +232,10 @@
 
       .teacher-list {
         grid-template-columns: 1fr;
+      }
+
+      .college-header {
+        flex-direction: column;
       }
 
       header h1 {
@@ -237,66 +294,126 @@
       </div>
 
       <p class="section-desc">
-        收录校区教师的公开信息，包括研究方向、所属学院、课题组方向、主页链接等。
-        当前为测试页面，后续可逐步补充与完善。
+        收录校区教师的公开信息，包括学院分类、职称分类、研究方向、教师主页与导师信息等。
+        当前优先整理工学院，后续可逐步扩展至其他学院。
       </p>
 
-      <div class="teacher-list">
-        <div class="teacher-card">
-          <h3>教师姓名待补充</h3>
+      <div class="college-block">
+        <div class="college-header">
           <div>
-            <span class="tag">所属学院待补充</span>
-            <span class="tag">研究方向待补充</span>
+            <h3>工学院</h3>
+            <p>
+              工学院教师资料入口。适合用于了解教师职称、专业方向、课题组情况以及研究生导师信息。
+            </p>
           </div>
-          <p>
-            简介：这里可以填写教师的研究方向、课题组信息、主要课程或公开主页内容。
-          </p>
-          <p>
-            链接：<a href="#" target="_blank">教师主页待补充</a>
-          </p>
+          <div class="college-badge">已整理</div>
         </div>
 
-        <div class="teacher-card">
-          <h3>教师姓名待补充</h3>
-          <div>
-            <span class="tag">所属学院待补充</span>
-            <span class="tag">研究方向待补充</span>
+        <div class="teacher-list">
+          <div class="teacher-card">
+            <h3>教授</h3>
+            <div>
+              <span class="tag">化工</span>
+              <span class="tag">机械</span>
+              <span class="tag">储运</span>
+              <span class="tag">自动化</span>
+            </div>
+            <p>
+              工学院教授信息入口，后续可继续拆分为具体专业与教师个人资料卡片。
+            </p>
+            <p>
+              <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485391.shtml" target="_blank" rel="noopener noreferrer">
+                查看官网信息 →
+              </a>
+            </p>
           </div>
-          <p>
-            简介：这里可以填写教师的研究方向、课题组信息、主要课程或公开主页内容。
-          </p>
-          <p>
-            链接：<a href="#" target="_blank">教师主页待补充</a>
-          </p>
-        </div>
 
-        <div class="teacher-card">
-          <h3>教师姓名待补充</h3>
-          <div>
-            <span class="tag">所属学院待补充</span>
-            <span class="tag">研究方向待补充</span>
+          <div class="teacher-card">
+            <h3>副教授</h3>
+            <div>
+              <span class="tag">副教授</span>
+              <span class="tag">专业分类</span>
+            </div>
+            <p>
+              工学院副教授信息入口，可用于后续补充教师主页、邮箱、研究方向与招生信息。
+            </p>
+            <p>
+              <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485391.shtml" target="_blank" rel="noopener noreferrer">
+                查看官网信息 →
+              </a>
+            </p>
           </div>
-          <p>
-            简介：这里可以填写教师的研究方向、课题组信息、主要课程或公开主页内容。
-          </p>
-          <p>
-            链接：<a href="#" target="_blank">教师主页待补充</a>
-          </p>
-        </div>
 
-        <div class="teacher-card">
-          <h3>教师姓名待补充</h3>
-          <div>
-            <span class="tag">所属学院待补充</span>
-            <span class="tag">研究方向待补充</span>
+          <div class="teacher-card">
+            <h3>讲师</h3>
+            <div>
+              <span class="tag">讲师</span>
+              <span class="tag">青年教师</span>
+            </div>
+            <p>
+              工学院讲师信息入口，适合整理课程负责教师、科研方向与公开联系方式。
+            </p>
+            <p>
+              <a href="https://www.cupk.edu.cn/gxy/" target="_blank" rel="noopener noreferrer">
+                查看工学院官网 →
+              </a>
+            </p>
           </div>
-          <p>
-            简介：这里可以填写教师的研究方向、课题组信息、主要课程或公开主页内容。
-          </p>
-          <p>
-            链接：<a href="#" target="_blank">教师主页待补充</a>
-          </p>
+
+          <div class="teacher-card">
+            <h3>研究生导师</h3>
+            <div>
+              <span class="tag">控制工程</span>
+              <span class="tag">机械工程</span>
+              <span class="tag">化学工程</span>
+              <span class="tag">油气储运</span>
+            </div>
+            <p>
+              工学院专业学位硕士研究生导师信息入口，适合想了解课题组和保研方向的同学查看。
+            </p>
+            <p>
+              <a href="https://www.cupk.edu.cn/gxy/c/2023-03-23/516074.shtml" target="_blank" rel="noopener noreferrer">
+                查看导师名单 →
+              </a>
+            </p>
+          </div>
+
+          <div class="teacher-card">
+            <h3>实验员</h3>
+            <div>
+              <span class="tag">实验教学</span>
+              <span class="tag">实验室</span>
+            </div>
+            <p>
+              实验员与实验教学相关信息入口，后续可与实验室安全、实验课程资料一起整理。
+            </p>
+            <p>
+              <a href="https://www.cupk.edu.cn/gxy/" target="_blank" rel="noopener noreferrer">
+                查看工学院官网 →
+              </a>
+            </p>
+          </div>
+
+          <div class="teacher-card">
+            <h3>辅导员</h3>
+            <div>
+              <span class="tag">学生工作</span>
+              <span class="tag">年级事务</span>
+            </div>
+            <p>
+              辅导员与学生工作相关信息入口，后续可补充负责年级、办公室与常用办事链接。
+            </p>
+            <p>
+              <a href="https://www.cupk.edu.cn/gxy/" target="_blank" rel="noopener noreferrer">
+                查看工学院官网 →
+              </a>
+            </p>
+          </div>
         </div>
+      </div>
+
+      <div class="coming-soon">
+        其他学院教师资料正在建设中。后续可继续加入：石油学院、文理学院、马克思主义学院等分类。
       </div>
     </section>
   </main>
