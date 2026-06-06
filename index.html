@@ -244,27 +244,63 @@
       font-weight: 700;
     }
 
-    .tools {
-      display: flex;
-      flex-wrap: wrap;
+    .college-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px;
-      margin: 22px 0;
+      margin: 24px 0;
     }
 
-    .filter {
+    .college-tab {
+      min-height: 58px;
       border: 1px solid #cbd5e1;
-      border-radius: 999px;
-      padding: 8px 14px;
+      border-radius: 14px;
+      padding: 10px 12px;
       background: white;
       color: #334155;
       cursor: pointer;
       font: inherit;
+      font-weight: 700;
     }
 
-    .filter.active {
+    .college-tab.active {
       border-color: var(--primary);
       background: var(--primary);
       color: white;
+    }
+
+    .college-panel[hidden] {
+      display: none;
+    }
+
+    .college-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 0 0 18px;
+      border-radius: 16px;
+      padding: 18px;
+      background: #f8fafc;
+    }
+
+    .college-header h3 {
+      margin: 0;
+      font-size: 23px;
+    }
+
+    .college-header p {
+      margin: 5px 0 0;
+      color: var(--muted);
+    }
+
+    .official-link {
+      flex: none;
+      border-radius: 10px;
+      padding: 8px 12px;
+      background: var(--primary-light);
+      font-weight: 700;
+      text-decoration: none;
     }
 
     .teacher-list {
@@ -275,7 +311,7 @@
 
     .teacher-card {
       display: flex;
-      min-height: 260px;
+      min-height: 220px;
       flex-direction: column;
       border: 1px solid var(--line);
       border-radius: var(--radius-md);
@@ -320,6 +356,12 @@
     .card-footer a {
       font-weight: 700;
       text-decoration: none;
+    }
+
+    .official-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
     }
 
     .source {
@@ -376,6 +418,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .college-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .teacher-list,
       .coming-grid {
         grid-template-columns: 1fr;
@@ -396,6 +442,10 @@
       }
 
       .section-heading {
+        flex-direction: column;
+      }
+
+      .college-header {
         flex-direction: column;
       }
 
@@ -470,82 +520,78 @@
       <div class="section-heading">
         <div>
           <h2>教师资料</h2>
-          <p>当前优先整理工学院公开信息。可以按类别筛选，也可以搜索职称、专业方向和关键词。</p>
+          <p>按学院并列整理校区官网公开的教师栏目。选择学院后，可按职称进入对应的官方原始页面。</p>
         </div>
-        <span class="status">工学院已整理</span>
+        <span class="status">4 个学院官网已接入</span>
       </div>
 
-      <div class="tools" role="group" aria-label="教师类别筛选">
-        <button class="filter active" type="button" data-filter="all" aria-pressed="true">全部</button>
-        <button class="filter" type="button" data-filter="teacher" aria-pressed="false">教学科研</button>
-        <button class="filter" type="button" data-filter="supervisor" aria-pressed="false">研究生导师</button>
-        <button class="filter" type="button" data-filter="support" aria-pressed="false">教学支持</button>
-        <button class="filter" type="button" data-filter="student" aria-pressed="false">学生工作</button>
+      <div class="college-tabs" role="tablist" aria-label="学院分类">
+        <button class="college-tab active" id="tab-gxy" type="button" role="tab" data-college="gxy" aria-controls="college-gxy" aria-selected="true">工学院</button>
+        <button class="college-tab" id="tab-syxy" type="button" role="tab" data-college="syxy" aria-controls="college-syxy" aria-selected="false">石油学院</button>
+        <button class="college-tab" id="tab-wlxy" type="button" role="tab" data-college="wlxy" aria-controls="college-wlxy" aria-selected="false">文理学院</button>
+        <button class="college-tab" id="tab-smxy" type="button" role="tab" data-college="smxy" aria-controls="college-smxy" aria-selected="false">工商马院</button>
       </div>
 
-      <div class="teacher-list" id="teacher-list">
-        <article class="teacher-card" data-category="teacher" data-search="教授 化工 机械 储运 自动化 工学院">
-          <h3>教授</h3>
-          <div class="tags"><span class="tag">化工</span><span class="tag">机械</span><span class="tag">储运</span><span class="tag">自动化</span></div>
-          <p>工学院教授公开信息入口，可用于了解专业方向与教师个人资料。</p>
-          <div class="card-footer">
-            <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485391.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
-            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
-          </div>
-        </article>
-
-        <article class="teacher-card" data-category="teacher" data-search="副教授 专业分类 工学院">
-          <h3>副教授</h3>
-          <div class="tags"><span class="tag">副教授</span><span class="tag">专业分类</span></div>
-          <p>工学院副教授公开信息入口，后续可继续补充教师主页、研究方向与招生信息。</p>
-          <div class="card-footer">
-            <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485392.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
-            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
-          </div>
-        </article>
-
-        <article class="teacher-card" data-category="teacher" data-search="讲师 青年教师 课程 科研 工学院">
-          <h3>讲师</h3>
-          <div class="tags"><span class="tag">讲师</span><span class="tag">青年教师</span></div>
-          <p>工学院讲师公开信息入口，适合查找课程负责教师和科研方向。</p>
-          <div class="card-footer">
-            <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485394.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
-            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
-          </div>
-        </article>
-
-        <article class="teacher-card" data-category="supervisor" data-search="研究生导师 控制工程 机械工程 化学工程 油气储运 保研 课题组">
-          <h3>研究生导师</h3>
-          <div class="tags"><span class="tag">控制工程</span><span class="tag">机械工程</span><span class="tag">化学工程</span><span class="tag">油气储运</span></div>
-          <p>专业学位硕士研究生导师信息入口，适合了解课题组与研究方向。</p>
-          <div class="card-footer">
-            <a href="https://www.cupk.edu.cn/gxy/c/2023-03-23/516074.shtml" target="_blank" rel="noopener noreferrer">查看学校官网名单 <span aria-hidden="true">↗</span></a>
-            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
-          </div>
-        </article>
-
-        <article class="teacher-card" data-category="support" data-search="实验员 实验教学 实验室 安全 实验课程">
-          <h3>实验员</h3>
-          <div class="tags"><span class="tag">实验教学</span><span class="tag">实验室</span></div>
-          <p>实验员与实验教学相关公开信息入口，后续将补充实验室安全和课程资料。</p>
-          <div class="card-footer">
-            <a href="https://www.cupk.edu.cn/gxy/c/2022-08-24/513578.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
-            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
-          </div>
-        </article>
-
-        <article class="teacher-card" data-category="student" data-search="辅导员 学生工作 年级事务 办公室">
-          <h3>辅导员</h3>
-          <div class="tags"><span class="tag">学生工作</span><span class="tag">年级事务</span></div>
-          <p>辅导员与学生工作相关公开信息入口，后续将补充负责年级和常用办事链接。</p>
-          <div class="card-footer">
-            <a href="https://www.cupk.edu.cn/gxy/c/2017-06-07/486634.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
-            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
-          </div>
-        </article>
+      <div class="college-panel" id="college-gxy" role="tabpanel" aria-labelledby="tab-gxy">
+        <div class="college-header">
+          <div><h3>工学院</h3><p>官网按职称设置独立教师栏目，并另设研究生导师栏目。</p></div>
+          <a class="official-link" href="https://www.cupk.edu.cn/gxy/" target="_blank" rel="noopener noreferrer">学院官网 ↗</a>
+        </div>
+        <div class="teacher-list">
+          <article class="teacher-card" data-search="工学院 教授 化工 机械 储运 自动化 材料 环境 安全"><h3>教授</h3><div class="tags"><span class="tag">正高级职称</span><span class="tag">按专业展示</span></div><p>查看工学院各专业教授与正高级工程师公开信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485391.shtml" target="_blank" rel="noopener noreferrer">进入教授栏目 ↗</a><span class="source">工学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="工学院 副教授 高级工程师 高级实验师"><h3>副教授</h3><div class="tags"><span class="tag">副高级职称</span><span class="tag">按专业展示</span></div><p>查看副教授、高级工程师和高级实验师等公开信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485392.shtml" target="_blank" rel="noopener noreferrer">进入副教授栏目 ↗</a><span class="source">工学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="工学院 讲师 工程师 青年教师"><h3>讲师</h3><div class="tags"><span class="tag">讲师</span><span class="tag">工程师</span></div><p>查看工学院讲师、工程师等教学科研人员信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485394.shtml" target="_blank" rel="noopener noreferrer">进入讲师栏目 ↗</a><span class="source">工学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="工学院 实验员 实验教学 实验室"><h3>实验员</h3><div class="tags"><span class="tag">实验教学</span><span class="tag">实验室</span></div><p>查看实验教学中心及实验技术人员公开信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/gxy/c/2022-08-24/513578.shtml" target="_blank" rel="noopener noreferrer">进入实验员栏目 ↗</a><span class="source">工学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="工学院 辅导员 学生工作"><h3>辅导员</h3><div class="tags"><span class="tag">学生工作</span></div><p>查看工学院学生工作队伍公开信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/gxy/c/2017-06-07/486634.shtml" target="_blank" rel="noopener noreferrer">进入辅导员栏目 ↗</a><span class="source">工学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="工学院 研究生导师 硕士导师 化学工程 机械工程 控制工程 油气储运"><h3>研究生导师</h3><div class="tags"><span class="tag">硕士生导师</span></div><p>查看各专业学位类别研究生导师名单。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/gxy/c/2023-03-23/516074.shtml" target="_blank" rel="noopener noreferrer">进入导师栏目 ↗</a><span class="source">工学院官网原始页面</span></div></article>
+        </div>
       </div>
 
-      <p class="empty" id="empty-result" role="status" hidden>没有找到匹配内容，请换一个关键词或选择“全部”。</p>
+      <div class="college-panel" id="college-syxy" role="tabpanel" aria-labelledby="tab-syxy" hidden>
+        <div class="college-header">
+          <div><h3>石油学院</h3><p>官网按教授、副教授、讲师、助教、实验员和辅导员设置独立栏目。</p></div>
+          <a class="official-link" href="https://www.cupk.edu.cn/syxy/" target="_blank" rel="noopener noreferrer">学院官网 ↗</a>
+        </div>
+        <div class="teacher-list">
+          <article class="teacher-card" data-search="石油学院 教授 研究员"><h3>教授</h3><div class="tags"><span class="tag">教授</span><span class="tag">研究员</span></div><p>查看石油学院教授及研究员公开信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/syxy/js/" target="_blank" rel="noopener noreferrer">进入教授栏目 ↗</a><span class="source">石油学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="石油学院 副教授 副研究员 高级工程师"><h3>副教授</h3><div class="tags"><span class="tag">副教授</span><span class="tag">副研究员</span></div><p>查看石油学院副教授及其他副高级职称教师。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/syxy/fjs/" target="_blank" rel="noopener noreferrer">进入副教授栏目 ↗</a><span class="source">石油学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="石油学院 讲师"><h3>讲师</h3><div class="tags"><span class="tag">讲师</span></div><p>查看石油学院讲师公开信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/syxy/jsh/" target="_blank" rel="noopener noreferrer">进入讲师栏目 ↗</a><span class="source">石油学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="石油学院 助教"><h3>助教</h3><div class="tags"><span class="tag">助教</span></div><p>查看石油学院助教公开信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/syxy/zj/" target="_blank" rel="noopener noreferrer">进入助教栏目 ↗</a><span class="source">石油学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="石油学院 实验员 实验师"><h3>实验员</h3><div class="tags"><span class="tag">实验员</span><span class="tag">实验师</span></div><p>查看石油学院实验技术人员公开信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/syxy/syy/" target="_blank" rel="noopener noreferrer">进入实验员栏目 ↗</a><span class="source">石油学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="石油学院 辅导员 学生工作"><h3>辅导员</h3><div class="tags"><span class="tag">学生工作</span></div><p>查看石油学院辅导员公开信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/syxy/fdy/" target="_blank" rel="noopener noreferrer">进入辅导员栏目 ↗</a><span class="source">石油学院官网原始页面</span></div></article>
+        </div>
+      </div>
+
+      <div class="college-panel" id="college-wlxy" role="tabpanel" aria-labelledby="tab-wlxy" hidden>
+        <div class="college-header">
+          <div><h3>文理学院</h3><p>官网按数学与统计、物理、语言与艺术、体育四个系展示，并在各系内按职称分类。</p></div>
+          <a class="official-link" href="https://www.cupk.edu.cn/wlxy/" target="_blank" rel="noopener noreferrer">学院官网 ↗</a>
+        </div>
+        <div class="teacher-list">
+          <article class="teacher-card" data-search="文理学院 教授 数学 物理 语言 艺术 体育"><h3>教授</h3><div class="tags"><span class="tag">四个系</span><span class="tag">教授</span></div><p>各系官网页面内均设有教授分类。</p><div class="card-footer official-links"><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490963.shtml" target="_blank" rel="noopener noreferrer">数学与统计系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490964.shtml" target="_blank" rel="noopener noreferrer">物理系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490978.shtml" target="_blank" rel="noopener noreferrer">语言与艺术系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2018-07-09/493672.shtml" target="_blank" rel="noopener noreferrer">体育系 ↗</a></div></article>
+          <article class="teacher-card" data-search="文理学院 副教授 数学 物理 语言 艺术 体育"><h3>副教授</h3><div class="tags"><span class="tag">四个系</span><span class="tag">副教授</span></div><p>进入各系页面查看副教授名单和个人主页。</p><div class="card-footer official-links"><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490963.shtml" target="_blank" rel="noopener noreferrer">数学与统计系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490964.shtml" target="_blank" rel="noopener noreferrer">物理系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490978.shtml" target="_blank" rel="noopener noreferrer">语言与艺术系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2018-07-09/493672.shtml" target="_blank" rel="noopener noreferrer">体育系 ↗</a></div></article>
+          <article class="teacher-card" data-search="文理学院 讲师 数学 物理 语言 艺术 体育"><h3>讲师</h3><div class="tags"><span class="tag">四个系</span><span class="tag">讲师</span></div><p>进入各系页面查看讲师名单和公开资料。</p><div class="card-footer official-links"><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490963.shtml" target="_blank" rel="noopener noreferrer">数学与统计系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490964.shtml" target="_blank" rel="noopener noreferrer">物理系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490978.shtml" target="_blank" rel="noopener noreferrer">语言与艺术系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2018-07-09/493672.shtml" target="_blank" rel="noopener noreferrer">体育系 ↗</a></div></article>
+          <article class="teacher-card" data-search="文理学院 助教 数学 语言 艺术 体育"><h3>助教</h3><div class="tags"><span class="tag">助教</span></div><p>数学与统计、语言与艺术、体育等系页面设有助教分类。</p><div class="card-footer official-links"><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490963.shtml" target="_blank" rel="noopener noreferrer">数学与统计系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490978.shtml" target="_blank" rel="noopener noreferrer">语言与艺术系 ↗</a><a href="https://www.cupk.edu.cn/wlxy/c/2018-07-09/493672.shtml" target="_blank" rel="noopener noreferrer">体育系 ↗</a></div></article>
+          <article class="teacher-card" data-search="文理学院 实验员 物理 高级工程师"><h3>实验员</h3><div class="tags"><span class="tag">物理系</span><span class="tag">实验技术</span></div><p>物理系官方教师页面设有实验员分类。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/wlxy/c/2017-11-06/490964.shtml" target="_blank" rel="noopener noreferrer">进入物理系页面 ↗</a><span class="source">文理学院官网原始页面</span></div></article>
+          <article class="teacher-card" data-search="文理学院 研究生导师 硕士导师 应用统计 翻译 物理学"><h3>研究生导师</h3><div class="tags"><span class="tag">专业学位</span><span class="tag">学术学位</span></div><p>查看文理学院硕士研究生导师与对应专业。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/wlxy/c/2023-03-23/516015.shtml" target="_blank" rel="noopener noreferrer">进入导师栏目 ↗</a><span class="source">文理学院官网原始页面</span></div></article>
+        </div>
+      </div>
+
+      <div class="college-panel" id="college-smxy" role="tabpanel" aria-labelledby="tab-smxy" hidden>
+        <div class="college-header">
+          <div><h3>工商管理学院/马克思主义学院</h3><p>官网按经济与金融、会计与管工、马克思主义三个系展示，并在系内按职称分类。</p></div>
+          <a class="official-link" href="https://www.cupk.edu.cn/smxy/" target="_blank" rel="noopener noreferrer">学院官网 ↗</a>
+        </div>
+        <div class="teacher-list">
+          <article class="teacher-card" data-search="工商马院 工商管理学院 马克思主义学院 教授 经济 金融 会计 管工"><h3>教授</h3><div class="tags"><span class="tag">三个系</span><span class="tag">教授</span></div><p>进入各系官方页面查看教授与学科带头人信息。</p><div class="card-footer official-links"><a href="https://www.cupk.edu.cn/smxy/szdw/jsxx/jjx/" target="_blank" rel="noopener noreferrer">经济与金融系 ↗</a><a href="https://www.cupk.edu.cn/smxy/c/2021-10-26/510063.shtml" target="_blank" rel="noopener noreferrer">会计与管工系 ↗</a><a href="https://www.cupk.edu.cn/smxy/c/2017-11-06/508682.shtml" target="_blank" rel="noopener noreferrer">马克思主义系 ↗</a></div></article>
+          <article class="teacher-card" data-search="工商马院 工商管理学院 马克思主义学院 副教授 经济 金融 会计 管工"><h3>副教授</h3><div class="tags"><span class="tag">三个系</span><span class="tag">副教授</span></div><p>进入各系官方页面查看副教授公开信息。</p><div class="card-footer official-links"><a href="https://www.cupk.edu.cn/smxy/szdw/jsxx/jjx/" target="_blank" rel="noopener noreferrer">经济与金融系 ↗</a><a href="https://www.cupk.edu.cn/smxy/c/2021-10-26/510063.shtml" target="_blank" rel="noopener noreferrer">会计与管工系 ↗</a><a href="https://www.cupk.edu.cn/smxy/c/2017-11-06/508682.shtml" target="_blank" rel="noopener noreferrer">马克思主义系 ↗</a></div></article>
+          <article class="teacher-card" data-search="工商马院 工商管理学院 马克思主义学院 讲师 经济 金融 会计 管工"><h3>讲师</h3><div class="tags"><span class="tag">三个系</span><span class="tag">讲师</span></div><p>进入各系官方页面查看讲师公开信息。</p><div class="card-footer official-links"><a href="https://www.cupk.edu.cn/smxy/szdw/jsxx/jjx/" target="_blank" rel="noopener noreferrer">经济与金融系 ↗</a><a href="https://www.cupk.edu.cn/smxy/c/2021-10-26/510063.shtml" target="_blank" rel="noopener noreferrer">会计与管工系 ↗</a><a href="https://www.cupk.edu.cn/smxy/c/2017-11-06/508682.shtml" target="_blank" rel="noopener noreferrer">马克思主义系 ↗</a></div></article>
+          <article class="teacher-card" data-search="工商马院 工商管理学院 马克思主义学院 助教 经济 金融 会计 管工"><h3>助教</h3><div class="tags"><span class="tag">三个系</span><span class="tag">助教</span></div><p>进入各系官方页面查看助教公开信息。</p><div class="card-footer official-links"><a href="https://www.cupk.edu.cn/smxy/szdw/jsxx/jjx/" target="_blank" rel="noopener noreferrer">经济与金融系 ↗</a><a href="https://www.cupk.edu.cn/smxy/c/2021-10-26/510063.shtml" target="_blank" rel="noopener noreferrer">会计与管工系 ↗</a><a href="https://www.cupk.edu.cn/smxy/c/2017-11-06/508682.shtml" target="_blank" rel="noopener noreferrer">马克思主义系 ↗</a></div></article>
+          <article class="teacher-card" data-search="工商马院 工商管理学院 马克思主义学院 研究生导师 工商管理 金融 会计 马克思主义理论"><h3>研究生导师</h3><div class="tags"><span class="tag">专业学位</span><span class="tag">学术学位</span></div><p>查看工商管理、金融、会计和马克思主义理论导师信息。</p><div class="card-footer"><a href="https://www.cupk.edu.cn/smxy/yjsdsxx/" target="_blank" rel="noopener noreferrer">进入导师栏目 ↗</a><span class="source">工商马院官网原始页面</span></div></article>
+        </div>
+      </div>
+
+      <p class="empty" id="empty-result" role="status" hidden>当前学院没有找到匹配职称，请更换关键词。</p>
     </section>
 
     <section class="panel" aria-labelledby="building-title">
@@ -585,21 +631,20 @@
   <script>
     const searchForm = document.querySelector("#search-form");
     const searchInput = document.querySelector("#teacher-search");
-    const filterButtons = [...document.querySelectorAll(".filter")];
-    const teacherCards = [...document.querySelectorAll(".teacher-card")];
+    const collegeTabs = [...document.querySelectorAll(".college-tab")];
+    const collegePanels = [...document.querySelectorAll(".college-panel")];
     const emptyResult = document.querySelector("#empty-result");
-    let activeCategory = "all";
+    let activeCollege = "gxy";
 
     function updateResults() {
       const keyword = searchInput.value.trim().toLocaleLowerCase("zh-CN");
+      const activePanel = document.querySelector(`#college-${activeCollege}`);
+      const teacherCards = [...activePanel.querySelectorAll(".teacher-card")];
       let visibleCount = 0;
 
       teacherCards.forEach((card) => {
-        const matchesCategory =
-          activeCategory === "all" || card.dataset.category === activeCategory;
-        const matchesKeyword =
+        const visible =
           !keyword || card.dataset.search.toLocaleLowerCase("zh-CN").includes(keyword);
-        const visible = matchesCategory && matchesKeyword;
 
         card.hidden = !visible;
         if (visible) visibleCount += 1;
@@ -608,16 +653,34 @@
       emptyResult.hidden = visibleCount !== 0;
     }
 
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        activeCategory = button.dataset.filter;
+    function setActiveCollege(college) {
+      activeCollege = college;
+      collegeTabs.forEach((tab) => {
+        const selected = tab.dataset.college === college;
+        tab.classList.toggle("active", selected);
+        tab.setAttribute("aria-selected", String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+      });
+      collegePanels.forEach((panel) => {
+        panel.hidden = panel.id !== `college-${college}`;
+      });
+      emptyResult.hidden = true;
+      updateResults();
+    }
+
+    collegeTabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => {
         searchInput.value = "";
-        filterButtons.forEach((item) => {
-          const selected = item === button;
-          item.classList.toggle("active", selected);
-          item.setAttribute("aria-pressed", String(selected));
-        });
-        updateResults();
+        setActiveCollege(tab.dataset.college);
+      });
+
+      tab.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+        event.preventDefault();
+        const direction = event.key === "ArrowRight" ? 1 : -1;
+        const nextIndex = (index + direction + collegeTabs.length) % collegeTabs.length;
+        collegeTabs[nextIndex].focus();
+        collegeTabs[nextIndex].click();
       });
     });
 
@@ -627,6 +690,8 @@
       document.querySelector("#teachers").scrollIntoView();
       updateResults();
     });
+
+    setActiveCollege(activeCollege);
   </script>
 </body>
 </html>
