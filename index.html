@@ -1,425 +1,632 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CUPKer Hub｜石克郎Direct</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CUPKer Hub｜更好找的校园信息入口</title>
+  <meta name="description" content="CUPKer Hub 是由学生自发整理的校园信息索引，汇集教师资料、课程、活动、通知和校园指南。">
+  <meta name="theme-color" content="#10275d">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.cupkerhub.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="CUPKer Hub｜更好找的校园信息入口">
+  <meta property="og:description" content="由 CUPKers 共建的校园公开信息索引。">
+  <meta property="og:url" content="https://www.cupkerhub.org/">
 
   <style>
+    :root {
+      --navy: #0f172a;
+      --blue: #1e3a8a;
+      --primary: #1d4ed8;
+      --primary-light: #dbeafe;
+      --ink: #182235;
+      --muted: #64748b;
+      --line: #dfe5ee;
+      --surface: #ffffff;
+      --background: #f4f7fb;
+      --success: #047857;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
+      background: var(--background);
+      color: var(--ink);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
         "Microsoft YaHei", sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
+      line-height: 1.6;
     }
 
-    header {
-      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    a {
+      color: var(--primary);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #60a5fa;
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 20;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: white;
+      transform: translateY(-150%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .hero {
+      padding: 58px 20px 74px;
       color: white;
-      padding: 56px 20px 48px;
       text-align: center;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(96, 165, 250, 0.26), transparent 28%),
+        linear-gradient(135deg, var(--navy), var(--blue));
     }
 
-    header h1 {
+    .hero-inner {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: #bfdbfe;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
       margin: 0;
-      font-size: 42px;
-      letter-spacing: 0.5px;
+      font-size: clamp(36px, 7vw, 54px);
+      letter-spacing: -0.03em;
     }
 
-    header p {
-      margin: 12px 0 0;
+    .tagline {
+      margin: 10px 0 0;
       color: #dbeafe;
-      font-size: 18px;
+      font-size: clamp(17px, 3vw, 21px);
+    }
+
+    .search-box {
+      display: flex;
+      width: min(100%, 680px);
+      margin: 28px auto 0;
+      padding: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+    }
+
+    .search-box input {
+      min-width: 0;
+      flex: 1;
+      border: 0;
+      padding: 12px 14px;
+      color: var(--ink);
+      font: inherit;
+      outline: 0;
+    }
+
+    .search-box button {
+      border: 0;
+      border-radius: 11px;
+      padding: 0 18px;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
     }
 
     .notice {
-      max-width: 980px;
-      margin: 24px auto 0;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 14px;
-      font-size: 14px;
-      color: #e5e7eb;
+      margin: 18px auto 0;
+      color: #dbeafe;
+      font-size: 13px;
     }
 
     main {
-      max-width: 1100px;
-      margin: -28px auto 60px;
-      padding: 0 20px;
+      width: min(100% - 32px, 1100px);
+      margin: -36px auto 64px;
     }
 
-    .grid {
+    .nav-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
+      gap: 14px;
       margin-bottom: 28px;
     }
 
     .nav-card {
-      background: white;
+      display: block;
+      min-height: 142px;
+      border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 22px 16px;
+      padding: 20px 12px;
+      background: white;
+      box-shadow: var(--shadow);
+      color: var(--ink);
       text-align: center;
-      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
-      border: 1px solid #e5e7eb;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease;
     }
 
-    .nav-card .icon {
-      font-size: 34px;
-      margin-bottom: 8px;
+    .nav-card:hover {
+      border-color: #93c5fd;
+      transform: translateY(-3px);
     }
 
-    .nav-card h3 {
-      margin: 0;
-      font-size: 17px;
-    }
-
-    .nav-card p {
-      margin: 8px 0 0;
-      color: #6b7280;
-      font-size: 13px;
-    }
-
-    .active {
+    .nav-card[aria-current="page"] {
       border: 2px solid #2563eb;
     }
 
-    .section {
-      background: white;
-      border-radius: 22px;
-      padding: 28px;
-      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
-      border: 1px solid #e5e7eb;
+    .nav-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 8px;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 22px;
+      font-weight: 800;
     }
 
-    .section-title {
+    .nav-card strong,
+    .nav-card small {
+      display: block;
+    }
+
+    .nav-card small {
+      margin-top: 5px;
+      color: var(--muted);
+    }
+
+    .panel {
+      scroll-margin-top: 20px;
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .section-heading {
       display: flex;
-      align-items: center;
-      gap: 12px;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
       margin-bottom: 20px;
     }
 
-    .section-title span {
-      font-size: 30px;
-    }
-
-    .section-title h2 {
+    .section-heading h2 {
       margin: 0;
-      font-size: 26px;
+      font-size: clamp(25px, 4vw, 32px);
     }
 
-    .section-desc {
-      color: #6b7280;
-      margin-top: -10px;
-      margin-bottom: 24px;
-      line-height: 1.7;
+    .section-heading p {
+      max-width: 760px;
+      margin: 6px 0 0;
+      color: var(--muted);
     }
 
-    .college-block {
-      border: 1px solid #e5e7eb;
-      border-radius: 20px;
-      padding: 22px;
-      background: #f9fafb;
-      margin-bottom: 22px;
-    }
-
-    .college-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .college-header h3 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    .college-header p {
-      margin: 8px 0 0;
-      color: #6b7280;
-      line-height: 1.7;
-    }
-
-    .college-badge {
-      flex-shrink: 0;
-      background: #dbeafe;
-      color: #1d4ed8;
-      padding: 8px 12px;
+    .status {
+      flex: none;
       border-radius: 999px;
+      padding: 6px 11px;
+      background: #ecfdf5;
+      color: var(--success);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
+    }
+
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .filter {
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: white;
+      color: #334155;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .filter.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
     }
 
     .teacher-list {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .teacher-card {
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
+      display: flex;
+      min-height: 260px;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
       padding: 20px;
       background: white;
-      transition: 0.2s ease;
     }
 
-    .teacher-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+    .teacher-card[hidden] {
+      display: none;
     }
 
     .teacher-card h3 {
-      margin: 0 0 10px;
-      font-size: 20px;
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .teacher-card p {
+      margin: 12px 0;
+      color: #475569;
+    }
+
+    .tags {
+      min-height: 36px;
     }
 
     .tag {
       display: inline-block;
-      margin: 4px 6px 4px 0;
-      padding: 5px 10px;
+      margin: 3px 5px 3px 0;
       border-radius: 999px;
-      background: #dbeafe;
-      color: #1d4ed8;
+      padding: 4px 10px;
+      background: var(--primary-light);
+      color: #1e40af;
       font-size: 13px;
     }
 
-    .teacher-card p {
-      margin: 10px 0;
-      line-height: 1.7;
-      color: #374151;
+    .card-footer {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid #eef2f7;
     }
 
-    .teacher-card a {
-      color: #2563eb;
+    .card-footer a {
+      font-weight: 700;
       text-decoration: none;
-      font-weight: 600;
     }
 
-    .teacher-card a:hover {
-      text-decoration: underline;
+    .source {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
     }
 
-    .coming-soon {
-      margin-top: 22px;
-      padding: 18px;
-      border-radius: 18px;
-      background: #f3f4f6;
-      color: #6b7280;
-      line-height: 1.7;
-      font-size: 15px;
+    .empty {
+      margin: 18px 0 0;
+      border-radius: 14px;
+      padding: 16px;
+      background: #fff7ed;
+      color: #9a3412;
+    }
+
+    .coming-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .coming-card {
+      scroll-margin-top: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      background: #f8fafc;
+    }
+
+    .coming-card h3 {
+      margin: 0;
+    }
+
+    .coming-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
     }
 
     footer {
+      padding: 32px 20px;
+      color: var(--muted);
       text-align: center;
-      color: #6b7280;
       font-size: 14px;
-      padding: 30px 20px;
     }
 
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
+    footer a {
+      color: inherit;
+    }
+
+    @media (max-width: 850px) {
+      .nav-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .teacher-list {
+      .teacher-list,
+      .coming-grid {
         grid-template-columns: 1fr;
       }
+    }
 
-      .college-header {
+    @media (max-width: 520px) {
+      .hero {
+        padding-top: 42px;
+      }
+
+      main {
+        width: min(100% - 24px, 1100px);
+      }
+
+      .panel {
+        padding: 21px;
+      }
+
+      .section-heading {
         flex-direction: column;
       }
 
-      header h1 {
-        font-size: 34px;
+      .search-box button {
+        padding: 0 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>CUPKer Hub</h1>
-    <p>石克郎Direct｜By CUPKers, For CUPKers</p>
-    <div class="notice">
-      本站为学生自发整理的信息索引平台，内容仅供学习与参考，不代表学校官方立场。
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">By CUPKers, For CUPKers</p>
+      <h1>CUPKer Hub</h1>
+      <p class="tagline">更好找的校园信息入口</p>
+
+      <form class="search-box" id="search-form" role="search">
+        <label for="teacher-search" hidden>搜索教师资料</label>
+        <input id="teacher-search" type="search" placeholder="搜索职称、专业或研究方向" autocomplete="off">
+        <button type="submit">搜索</button>
+      </form>
+
+      <p class="notice">学生自发整理，仅索引公开信息，不代表学校官方立场。</p>
     </div>
   </header>
 
-  <main>
-    <div class="grid">
-      <div class="nav-card active">
-        <div class="icon">👨‍🏫</div>
-        <h3>教师资料</h3>
-        <p>已开放</p>
-      </div>
+  <main id="main">
+    <nav class="nav-grid" aria-label="主要栏目">
+      <a class="nav-card" href="#teachers" aria-current="page">
+        <span class="nav-icon" aria-hidden="true">师</span>
+        <strong>教师资料</strong>
+        <small>已开放</small>
+      </a>
+      <a class="nav-card" href="#events">
+        <span class="nav-icon" aria-hidden="true">活</span>
+        <strong>近期活动</strong>
+        <small>筹备中</small>
+      </a>
+      <a class="nav-card" href="#notices">
+        <span class="nav-icon" aria-hidden="true">知</span>
+        <strong>校园通知</strong>
+        <small>筹备中</small>
+      </a>
+      <a class="nav-card" href="#courses">
+        <span class="nav-icon" aria-hidden="true">课</span>
+        <strong>课程资料</strong>
+        <small>筹备中</small>
+      </a>
+      <a class="nav-card" href="#guides">
+        <span class="nav-icon" aria-hidden="true">导</span>
+        <strong>校园指南</strong>
+        <small>筹备中</small>
+      </a>
+    </nav>
 
-      <div class="nav-card">
-        <div class="icon">📅</div>
-        <h3>近期活动</h3>
-        <p>建设中</p>
-      </div>
-
-      <div class="nav-card">
-        <div class="icon">📢</div>
-        <h3>校园通知</h3>
-        <p>建设中</p>
-      </div>
-
-      <div class="nav-card">
-        <div class="icon">📚</div>
-        <h3>课程资料</h3>
-        <p>建设中</p>
-      </div>
-
-      <div class="nav-card">
-        <div class="icon">🧭</div>
-        <h3>校园指南</h3>
-        <p>建设中</p>
-      </div>
-    </div>
-
-    <section class="section">
-      <div class="section-title">
-        <span>👨‍🏫</span>
-        <h2>教师资料</h2>
-      </div>
-
-      <p class="section-desc">
-        收录校区教师的公开信息，包括学院分类、职称分类、研究方向、教师主页与导师信息等。
-        当前优先整理工学院，后续可逐步扩展至其他学院。
-      </p>
-
-      <div class="college-block">
-        <div class="college-header">
-          <div>
-            <h3>工学院</h3>
-            <p>
-              工学院教师资料入口。适合用于了解教师职称、专业方向、课题组情况以及研究生导师信息。
-            </p>
-          </div>
-          <div class="college-badge">已整理</div>
+    <section class="panel" id="teachers">
+      <div class="section-heading">
+        <div>
+          <h2>教师资料</h2>
+          <p>当前优先整理工学院公开信息。可以按类别筛选，也可以搜索职称、专业方向和关键词。</p>
         </div>
+        <span class="status">工学院已整理</span>
+      </div>
 
-        <div class="teacher-list">
-          <div class="teacher-card">
-            <h3>教授</h3>
-            <div>
-              <span class="tag">化工</span>
-              <span class="tag">机械</span>
-              <span class="tag">储运</span>
-              <span class="tag">自动化</span>
-            </div>
-            <p>
-              工学院教授信息入口，后续可继续拆分为具体专业与教师个人资料卡片。
-            </p>
-            <p>
-              <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485391.shtml" target="_blank" rel="noopener noreferrer">
-                查看官网信息 →
-              </a>
-            </p>
-          </div>
+      <div class="tools" role="group" aria-label="教师类别筛选">
+        <button class="filter active" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="filter" type="button" data-filter="teacher" aria-pressed="false">教学科研</button>
+        <button class="filter" type="button" data-filter="supervisor" aria-pressed="false">研究生导师</button>
+        <button class="filter" type="button" data-filter="support" aria-pressed="false">教学支持</button>
+        <button class="filter" type="button" data-filter="student" aria-pressed="false">学生工作</button>
+      </div>
 
-          <div class="teacher-card">
-            <h3>副教授</h3>
-            <div>
-              <span class="tag">副教授</span>
-              <span class="tag">专业分类</span>
-            </div>
-            <p>
-              工学院副教授信息入口，可用于后续补充教师主页、邮箱、研究方向与招生信息。
-            </p>
-            <p>
-              <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485392.shtml" target="_blank" rel="noopener noreferrer">
-                查看官网信息 →
-              </a>
-            </p>
+      <div class="teacher-list" id="teacher-list">
+        <article class="teacher-card" data-category="teacher" data-search="教授 化工 机械 储运 自动化 工学院">
+          <h3>教授</h3>
+          <div class="tags"><span class="tag">化工</span><span class="tag">机械</span><span class="tag">储运</span><span class="tag">自动化</span></div>
+          <p>工学院教授公开信息入口，可用于了解专业方向与教师个人资料。</p>
+          <div class="card-footer">
+            <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485391.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
+            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
           </div>
+        </article>
 
-          <div class="teacher-card">
-            <h3>讲师</h3>
-            <div>
-              <span class="tag">讲师</span>
-              <span class="tag">青年教师</span>
-            </div>
-            <p>
-              工学院讲师信息入口，适合整理课程负责教师、科研方向与公开联系方式。
-            </p>
-            <p>
-              <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485394.shtml" target="_blank" rel="noopener noreferrer">
-                查看工学院官网 →
-              </a>
-            </p>
+        <article class="teacher-card" data-category="teacher" data-search="副教授 专业分类 工学院">
+          <h3>副教授</h3>
+          <div class="tags"><span class="tag">副教授</span><span class="tag">专业分类</span></div>
+          <p>工学院副教授公开信息入口，后续可继续补充教师主页、研究方向与招生信息。</p>
+          <div class="card-footer">
+            <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485392.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
+            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
           </div>
+        </article>
 
-          <div class="teacher-card">
-            <h3>研究生导师</h3>
-            <div>
-              <span class="tag">控制工程</span>
-              <span class="tag">机械工程</span>
-              <span class="tag">化学工程</span>
-              <span class="tag">油气储运</span>
-            </div>
-            <p>
-              工学院专业学位硕士研究生导师信息入口，适合想了解课题组和保研方向的同学查看。
-            </p>
-            <p>
-              <a href="https://www.cupk.edu.cn/gxy/c/2023-03-23/516074.shtml" target="_blank" rel="noopener noreferrer">
-                查看导师名单 →
-              </a>
-            </p>
+        <article class="teacher-card" data-category="teacher" data-search="讲师 青年教师 课程 科研 工学院">
+          <h3>讲师</h3>
+          <div class="tags"><span class="tag">讲师</span><span class="tag">青年教师</span></div>
+          <p>工学院讲师公开信息入口，适合查找课程负责教师和科研方向。</p>
+          <div class="card-footer">
+            <a href="https://www.cupk.edu.cn/gxy/c/2017-05-04/485394.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
+            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
           </div>
+        </article>
 
-          <div class="teacher-card">
-            <h3>实验员</h3>
-            <div>
-              <span class="tag">实验教学</span>
-              <span class="tag">实验室</span>
-            </div>
-            <p>
-              实验员与实验教学相关信息入口，后续可与实验室安全、实验课程资料一起整理。
-            </p>
-            <p>
-              <a href="https://www.cupk.edu.cn/gxy/c/2022-08-24/513578.shtml" target="_blank" rel="noopener noreferrer">
-                查看工学院官网 →
-              </a>
-            </p>
+        <article class="teacher-card" data-category="supervisor" data-search="研究生导师 控制工程 机械工程 化学工程 油气储运 保研 课题组">
+          <h3>研究生导师</h3>
+          <div class="tags"><span class="tag">控制工程</span><span class="tag">机械工程</span><span class="tag">化学工程</span><span class="tag">油气储运</span></div>
+          <p>专业学位硕士研究生导师信息入口，适合了解课题组与研究方向。</p>
+          <div class="card-footer">
+            <a href="https://www.cupk.edu.cn/gxy/c/2023-03-23/516074.shtml" target="_blank" rel="noopener noreferrer">查看学校官网名单 <span aria-hidden="true">↗</span></a>
+            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
           </div>
+        </article>
 
-          <div class="teacher-card">
-            <h3>辅导员</h3>
-            <div>
-              <span class="tag">学生工作</span>
-              <span class="tag">年级事务</span>
-            </div>
-            <p>
-              辅导员与学生工作相关信息入口，后续可补充负责年级、办公室与常用办事链接。
-            </p>
-            <p>
-              <a href="https://www.cupk.edu.cn/gxy/c/2017-06-07/486634.shtml" target="_blank" rel="noopener noreferrer">
-                查看工学院官网 →
-              </a>
-            </p>
+        <article class="teacher-card" data-category="support" data-search="实验员 实验教学 实验室 安全 实验课程">
+          <h3>实验员</h3>
+          <div class="tags"><span class="tag">实验教学</span><span class="tag">实验室</span></div>
+          <p>实验员与实验教学相关公开信息入口，后续将补充实验室安全和课程资料。</p>
+          <div class="card-footer">
+            <a href="https://www.cupk.edu.cn/gxy/c/2022-08-24/513578.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
+            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
           </div>
+        </article>
+
+        <article class="teacher-card" data-category="student" data-search="辅导员 学生工作 年级事务 办公室">
+          <h3>辅导员</h3>
+          <div class="tags"><span class="tag">学生工作</span><span class="tag">年级事务</span></div>
+          <p>辅导员与学生工作相关公开信息入口，后续将补充负责年级和常用办事链接。</p>
+          <div class="card-footer">
+            <a href="https://www.cupk.edu.cn/gxy/c/2017-06-07/486634.shtml" target="_blank" rel="noopener noreferrer">查看学校官网信息 <span aria-hidden="true">↗</span></a>
+            <span class="source">来源：工学院官网｜核验于 2026-06-06</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="empty" id="empty-result" role="status" hidden>没有找到匹配内容，请换一个关键词或选择“全部”。</p>
+    </section>
+
+    <section class="panel" aria-labelledby="building-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="building-title">正在建设</h2>
+          <p>以下栏目已有明确方向。正式内容上线前，入口仍可用于了解建设范围。</p>
         </div>
       </div>
 
-      <div class="coming-soon">
-        其他学院教师资料正在建设中。后续可继续加入：石油学院、文理学院、马克思主义学院等分类。
+      <div class="coming-grid">
+        <article class="coming-card" id="events">
+          <h3>近期活动</h3>
+          <p>计划收录讲座、竞赛、社团活动和招聘宣讲，并标注时间、地点和报名截止日期。</p>
+        </article>
+        <article class="coming-card" id="notices">
+          <h3>校园通知</h3>
+          <p>计划索引教务、奖助、考试和学生工作通知，并保留发布部门与官方原文。</p>
+        </article>
+        <article class="coming-card" id="courses">
+          <h3>课程资料</h3>
+          <p>第一阶段建设课程索引、教学大纲和公开资源入口，不收录来源不明的版权材料。</p>
+        </article>
+        <article class="coming-card" id="guides">
+          <h3>校园指南</h3>
+          <p>优先整理校历、常用系统、校园地图、图书馆和高频办事流程。</p>
+        </article>
       </div>
     </section>
   </main>
 
   <footer>
-    © 2026 CUPKer Hub｜学生自发建设的信息索引项目 | LOVE王栎鑫
+    <p>© 2026 CUPKer Hub｜学生自发建设｜非学校官方网站</p>
+    <p><a href="mailto:feedback@cupkerhub.org?subject=CUPKer%20Hub%20信息纠错">信息纠错</a> · 内容仅索引公开来源</p>
   </footer>
+
+  <script>
+    const searchForm = document.querySelector("#search-form");
+    const searchInput = document.querySelector("#teacher-search");
+    const filterButtons = [...document.querySelectorAll(".filter")];
+    const teacherCards = [...document.querySelectorAll(".teacher-card")];
+    const emptyResult = document.querySelector("#empty-result");
+    let activeCategory = "all";
+
+    function updateResults() {
+      const keyword = searchInput.value.trim().toLocaleLowerCase("zh-CN");
+      let visibleCount = 0;
+
+      teacherCards.forEach((card) => {
+        const matchesCategory =
+          activeCategory === "all" || card.dataset.category === activeCategory;
+        const matchesKeyword =
+          !keyword || card.dataset.search.toLocaleLowerCase("zh-CN").includes(keyword);
+        const visible = matchesCategory && matchesKeyword;
+
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+
+      emptyResult.hidden = visibleCount !== 0;
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeCategory = button.dataset.filter;
+        searchInput.value = "";
+        filterButtons.forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle("active", selected);
+          item.setAttribute("aria-pressed", String(selected));
+        });
+        updateResults();
+      });
+    });
+
+    searchInput.addEventListener("input", updateResults);
+    searchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      document.querySelector("#teachers").scrollIntoView();
+      updateResults();
+    });
+  </script>
 </body>
 </html>
