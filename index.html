@@ -890,6 +890,666 @@
         transition: none !important;
       }
     }
+
+    /* 2026 visual refresh: student editorial desk meets campus archive. */
+    :root {
+      --navy: #071923;
+      --blue: #123b46;
+      --primary: #d94f2b;
+      --primary-dark: #9f321d;
+      --primary-light: #f7dfd3;
+      --ink: #172023;
+      --muted: #68706e;
+      --line: #cfc8ba;
+      --surface: #f7f2e8;
+      --background: #dcd7ca;
+      --success: #1f695b;
+      --radius-lg: 6px;
+      --radius-md: 4px;
+      --shadow: 8px 10px 0 rgba(11, 28, 32, 0.09);
+    }
+
+    body {
+      background-color: var(--background);
+      background-image:
+        linear-gradient(rgba(20, 42, 44, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 42, 44, 0.035) 1px, transparent 1px);
+      background-size: 24px 24px;
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.42), transparent 24%),
+        radial-gradient(circle at 90% 70%, rgba(14, 57, 62, 0.08), transparent 28%);
+      content: "";
+      pointer-events: none;
+    }
+
+    ::selection {
+      background: #d94f2b;
+      color: #fff8ed;
+    }
+
+    a {
+      color: #a83c25;
+      text-underline-offset: 3px;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline-color: #e36a45;
+    }
+
+    .hero {
+      min-height: 560px;
+      display: grid;
+      align-items: center;
+      padding: 82px 24px 140px;
+      background-color: #061923;
+      background-image:
+        linear-gradient(90deg, rgba(5, 20, 29, 0.98) 0%, rgba(5, 20, 29, 0.92) 35%, rgba(5, 20, 29, 0.26) 72%, rgba(5, 20, 29, 0.08) 100%),
+        url("assets/cupk-background.jpg");
+      background-position: center;
+      background-size: cover;
+    }
+
+    .hero::before {
+      top: auto;
+      right: auto;
+      bottom: 34px;
+      left: 0;
+      width: 100%;
+      height: 36px;
+      border: 0;
+      border-top: 1px solid rgba(241, 222, 181, 0.28);
+      border-bottom: 1px solid rgba(241, 222, 181, 0.16);
+      border-radius: 0;
+      box-shadow: none;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(235, 207, 160, 0.24) 0 1px,
+        transparent 1px 40px
+      );
+    }
+
+    .hero::after {
+      height: 5px;
+      background: #d94f2b;
+      opacity: 0.94;
+    }
+
+    .hero-inner {
+      width: min(100%, 1200px);
+    }
+
+    .hero-art {
+      top: auto;
+      right: 2%;
+      bottom: -86px;
+      color: transparent;
+      font-size: clamp(110px, 18vw, 260px);
+      letter-spacing: -0.1em;
+      transform: none;
+      opacity: 0.9;
+      -webkit-text-stroke: 1px rgba(234, 219, 184, 0.2);
+      text-shadow: none;
+    }
+
+    .hero-art::before,
+    .hero-art::after {
+      display: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: #f1d9b8;
+      font-family: "Segoe UI", sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+    }
+
+    .eyebrow::before {
+      width: 34px;
+      height: 5px;
+      background: #df5934;
+      content: "";
+    }
+
+    h1 {
+      max-width: 720px;
+      color: #fff9ed;
+      font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+      font-size: clamp(52px, 8vw, 90px);
+      font-weight: 700;
+      letter-spacing: -0.055em;
+      line-height: 0.95;
+      text-wrap: balance;
+    }
+
+    .tagline {
+      margin-top: 22px;
+      color: #d5d2c4;
+      font-size: clamp(17px, 2.2vw, 22px);
+      letter-spacing: 0.06em;
+    }
+
+    .search-box {
+      width: min(100%, 620px);
+      margin-top: 38px;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 244, 222, 0.52);
+      border-radius: 2px;
+      background: #f5efdf;
+      box-shadow: 10px 12px 0 rgba(0, 0, 0, 0.28);
+    }
+
+    .search-box input {
+      min-height: 58px;
+      padding-inline: 20px;
+    }
+
+    .search-box button {
+      min-width: 112px;
+      border-left: 1px solid #b94428;
+      border-radius: 0;
+      background: #d94f2b;
+      letter-spacing: 0.08em;
+    }
+
+    .search-box button:hover {
+      background: #b83e23;
+    }
+
+    .notice {
+      color: #aeb9b6;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    main {
+      width: min(100% - 48px, 1200px);
+      margin-top: -72px;
+    }
+
+    .nav-grid {
+      counter-reset: hub-nav;
+      gap: 0;
+      margin-bottom: 42px;
+      border: 1px solid #1b3439;
+      box-shadow: 10px 12px 0 rgba(9, 27, 31, 0.13);
+    }
+
+    .nav-card {
+      counter-increment: hub-nav;
+      position: relative;
+      min-height: 132px;
+      border: 0;
+      border-right: 1px solid #213c41;
+      border-radius: 0;
+      padding: 24px 20px;
+      background: #f4ecdd;
+      box-shadow: none;
+      text-align: left;
+    }
+
+    .nav-card:last-child {
+      border-right: 0;
+    }
+
+    .nav-card::after {
+      position: absolute;
+      top: 13px;
+      right: 15px;
+      color: #9a9588;
+      content: "0" counter(hub-nav);
+      font-family: Consolas, monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-card:hover {
+      z-index: 1;
+      border-color: transparent;
+      background: #fff8e9;
+      box-shadow: inset 0 -5px #d94f2b;
+      transform: translateY(-5px);
+    }
+
+    .nav-card[aria-current="page"] {
+      border-color: transparent;
+      background: #0d2a31;
+      color: #fff8e9;
+      box-shadow: inset 0 -5px #d94f2b;
+    }
+
+    .nav-card[aria-current="page"]::after,
+    .nav-card[aria-current="page"] small {
+      color: #91aaa8;
+    }
+
+    .nav-icon {
+      width: 38px;
+      height: 38px;
+      margin: 0 0 13px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      background: transparent;
+      color: #b13d24;
+      font-family: "Noto Serif SC", serif;
+    }
+
+    .nav-card[aria-current="page"] .nav-icon {
+      color: #f1c099;
+    }
+
+    .nav-card strong {
+      font-size: 16px;
+      letter-spacing: 0.04em;
+    }
+
+    .panel {
+      position: relative;
+      margin-top: 36px;
+      border: 1px solid #bdb5a7;
+      border-radius: 4px;
+      background:
+        linear-gradient(90deg, transparent 31px, rgba(197, 75, 42, 0.1) 31px 32px, transparent 32px),
+        var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .panel::before {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 9px;
+      height: 9px;
+      border: 1px solid #7a756b;
+      border-radius: 50%;
+      background: #d9d2c3;
+      box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+      content: "";
+    }
+
+    .section-heading {
+      padding-bottom: 24px;
+      border-bottom: 1px solid #cfc7b8;
+    }
+
+    .section-heading h2 {
+      font-family: Georgia, "Noto Serif SC", serif;
+      font-size: clamp(30px, 4vw, 43px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      color: #676c68;
+    }
+
+    .status {
+      border-color: #184c47;
+      border-radius: 2px;
+      background: #e5eee7;
+      color: #17584d;
+      font-family: Consolas, monospace;
+      letter-spacing: 0.05em;
+    }
+
+    .college-tabs {
+      gap: 0;
+      border-color: #9e9b91;
+      border-radius: 2px;
+      padding: 0;
+      background: transparent;
+    }
+
+    .college-tab {
+      border-right: 1px solid #b8b2a7;
+      border-radius: 0;
+      background: #e7e0d3;
+    }
+
+    .college-tab:last-child {
+      border-right: 0;
+    }
+
+    .college-tab:hover:not(.active) {
+      background: #f1eadd;
+    }
+
+    .college-tab.active {
+      background: #12343a;
+      color: #fff8e9;
+      box-shadow: inset 0 -4px #db5432;
+    }
+
+    .college-header,
+    .coming-card,
+    .rating-card,
+    .security-card {
+      border-color: #c9c1b3;
+      border-radius: 3px;
+      background: rgba(235, 228, 214, 0.66);
+    }
+
+    .official-link {
+      border-color: #9d978b;
+      border-radius: 2px;
+      background: #fffaf0;
+    }
+
+    .teacher-list {
+      gap: 14px;
+    }
+
+    .teacher-card {
+      position: relative;
+      overflow: hidden;
+      border-color: #c7c0b3;
+      border-radius: 3px;
+      background: #fffbf2;
+    }
+
+    .teacher-card::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #173b40;
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease;
+    }
+
+    .teacher-card:hover {
+      border-color: #817d73;
+      box-shadow: 6px 7px 0 rgba(18, 45, 48, 0.12);
+      transform: translate(-2px, -3px);
+    }
+
+    .teacher-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .teacher-card h3 {
+      font-family: Georgia, "Noto Serif SC", serif;
+      font-size: 21px;
+    }
+
+    .tag {
+      border-color: #b9aea0;
+      border-radius: 2px;
+      background: #eee4d6;
+      color: #714438;
+      font-family: Consolas, "Microsoft YaHei", sans-serif;
+    }
+
+    .card-footer {
+      border-color: #d8d0c3;
+    }
+
+    .rating-score {
+      color: #bd4227;
+      font-family: Georgia, serif;
+    }
+
+    .rating-dimension {
+      border-color: #cfc7ba;
+      border-radius: 2px;
+      background: #fffaf1;
+    }
+
+    .security-state {
+      border-radius: 2px;
+    }
+
+    .disabled-submit {
+      border-radius: 2px;
+    }
+
+    footer {
+      border-color: #bcb6aa;
+      color: #5f6764;
+      font-family: Consolas, "Microsoft YaHei", sans-serif;
+    }
+
+    .rule-drawer {
+      width: 52px;
+    }
+
+    .rule-drawer-tab {
+      width: 52px;
+      border-color: #d65a37;
+      border-radius: 3px 0 0 3px;
+      padding: 18px 12px;
+      background: #c94527;
+      color: #fff5df;
+      box-shadow: -5px 6px 0 rgba(7, 22, 27, 0.24);
+      font-family: "Noto Serif SC", serif;
+      letter-spacing: 0.2em;
+    }
+
+    .rule-drawer-tab::before {
+      display: block;
+      width: 8px;
+      height: 8px;
+      margin: 0 auto 11px;
+      border-radius: 50%;
+      background: #ffd0a8;
+      box-shadow: 0 0 0 4px rgba(255, 208, 168, 0.18);
+      content: "";
+    }
+
+    .rule-drawer-panel {
+      right: 52px;
+      width: min(440px, calc(100vw - 72px));
+      min-height: 500px;
+      overflow: hidden;
+      border-color: #31474a;
+      border-radius: 3px 0 0 3px;
+      padding: 28px;
+      background-color: #071a20;
+      background-image:
+        linear-gradient(rgba(5, 18, 22, 0.57), rgba(5, 18, 22, 0.72)),
+        url("assets/rules-archive-dossier.png");
+      background-position: center;
+      background-size: cover;
+      box-shadow: -14px 16px 0 rgba(5, 15, 18, 0.22);
+    }
+
+    .rule-drawer-panel::before {
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(231, 205, 165, 0.17);
+      content: "";
+      pointer-events: none;
+    }
+
+    .rule-drawer-panel::after {
+      position: absolute;
+      top: 0;
+      right: 24px;
+      width: 7px;
+      height: 74px;
+      background: #d14d2f;
+      content: "";
+    }
+
+    .rule-drawer-head {
+      position: relative;
+      z-index: 1;
+      color: #c5aa87;
+      font-family: Consolas, monospace;
+    }
+
+    .rule-drawer-panel h2 {
+      position: relative;
+      z-index: 1;
+      margin-top: 42px;
+      color: #fff0d5;
+      font-family: Georgia, "Noto Serif SC", serif;
+      font-size: 30px;
+      letter-spacing: 0.04em;
+    }
+
+    .rule-drawer-text {
+      position: relative;
+      z-index: 1;
+      min-height: 178px;
+      margin-top: 24px;
+      border: 1px solid rgba(223, 191, 146, 0.28);
+      border-radius: 1px;
+      padding: 24px 22px 24px 28px;
+      background: rgba(5, 16, 20, 0.82);
+      color: #e5dac6;
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      font-size: 16px;
+      line-height: 2;
+      box-shadow: inset 5px 0 #bd4227;
+    }
+
+    .rule-drawer-note {
+      position: relative;
+      z-index: 1;
+      color: #9d9f94;
+      font-family: Consolas, "Microsoft YaHei", sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .rule-controls {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .rule-controls button {
+      border: 1px solid rgba(223, 191, 146, 0.35);
+      border-radius: 1px;
+      padding: 10px;
+      background: rgba(8, 27, 32, 0.86);
+      color: #dac8ad;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+    }
+
+    .rule-controls button:hover {
+      border-color: #dc6040;
+      background: #a73822;
+      color: #fff7e9;
+    }
+
+    .rule-drawer:not(.open) .rule-drawer-panel {
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(110%, -50%);
+    }
+
+    .rule-drawer:not(.open) .rule-drawer-tab {
+      border-radius: 3px 0 0 3px;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        background-position: 60% center;
+      }
+
+      .nav-card {
+        border-bottom: 1px solid #213c41;
+      }
+
+      .nav-card:nth-child(2n) {
+        border-right: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        min-height: 520px;
+        padding: 58px 20px 110px;
+        background-position: 66% center;
+      }
+
+      .hero-art {
+        right: -8%;
+        bottom: -26px;
+        font-size: 100px;
+      }
+
+      h1 {
+        font-size: 52px;
+      }
+
+      main {
+        width: min(100% - 22px, 1200px);
+        margin-top: -58px;
+      }
+
+      .nav-card {
+        min-height: 116px;
+        padding: 19px 14px;
+      }
+
+      .panel {
+        padding: 27px 20px;
+        background: var(--surface);
+      }
+
+      .college-tab {
+        border-bottom: 1px solid #b8b2a7;
+      }
+
+      .rule-drawer {
+        right: 0;
+        bottom: 14px;
+        width: 48px;
+      }
+
+      .rule-drawer-tab {
+        width: 48px;
+      }
+
+      .rule-drawer-panel {
+        right: 48px;
+        width: min(354px, calc(100vw - 60px));
+        min-height: 0;
+        max-height: 75vh;
+        padding: 24px 20px;
+      }
+
+      .rule-drawer:not(.open) .rule-drawer-panel {
+        transform: translate(110%, 0);
+      }
+
+      .rule-drawer-panel h2 {
+        margin-top: 24px;
+        font-size: 25px;
+      }
+
+      .rule-drawer-text {
+        min-height: 152px;
+        padding: 18px 17px 18px 22px;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 
@@ -950,7 +1610,7 @@
 
       <div class="college-panel" id="college-gxy" role="tabpanel" aria-labelledby="tab-gxy">
         <div class="college-header">
-          <div><h3>工学院</h3><p>官网按职称设置独立教师栏目，并另设研究生导师栏目。</p></div>
+          <div><h3>工学院</p></div>
           <a class="official-link" href="https://www.cupk.edu.cn/gxy/" target="_blank" rel="noopener noreferrer">学院官网 ↗</a>
         </div>
         <div class="teacher-list">
@@ -965,7 +1625,7 @@
 
       <div class="college-panel" id="college-syxy" role="tabpanel" aria-labelledby="tab-syxy" hidden>
         <div class="college-header">
-          <div><h3>石油学院</h3><p>官网按教授、副教授、讲师、助教、实验员和辅导员设置独立栏目。</p></div>
+          <div><h3>石油学院</p></div>
           <a class="official-link" href="https://www.cupk.edu.cn/syxy/" target="_blank" rel="noopener noreferrer">学院官网 ↗</a>
         </div>
         <div class="teacher-list">
@@ -980,7 +1640,7 @@
 
       <div class="college-panel" id="college-wlxy" role="tabpanel" aria-labelledby="tab-wlxy" hidden>
         <div class="college-header">
-          <div><h3>文理学院</h3><p>官网按数学与统计、物理、语言与艺术、体育四个系展示，并在各系内按职称分类。</p></div>
+          <div><h3>文理学院</p></div>
           <a class="official-link" href="https://www.cupk.edu.cn/wlxy/" target="_blank" rel="noopener noreferrer">学院官网 ↗</a>
         </div>
         <div class="teacher-list">
@@ -995,7 +1655,7 @@
 
       <div class="college-panel" id="college-smxy" role="tabpanel" aria-labelledby="tab-smxy" hidden>
         <div class="college-header">
-          <div><h3>工商管理学院/马克思主义学院</h3><p>官网按经济与金融、会计与管工、马克思主义三个系展示，并在系内按职称分类。</p></div>
+          <div><h3>工商管理学院/马克思主义学院</p></div>
           <a class="official-link" href="https://www.cupk.edu.cn/smxy/" target="_blank" rel="noopener noreferrer">学院官网 ↗</a>
         </div>
         <div class="teacher-list">
@@ -1087,8 +1747,12 @@
         <span id="rule-progress">1 / 6</span>
       </div>
       <h2 id="rule-title">校园规则档案</h2>
-      <p class="rule-drawer-text" id="rule-text">规则内容留白 01</p>
-      <p class="rule-drawer-note">虚构娱乐内容。请在源码的 ruleDrafts 数组中替换文字。</p>
+      <p class="rule-drawer-text" id="rule-text">档案载入中……</p>
+      <p class="rule-drawer-note">虚构讽刺内容，不影射具体个人。若你认出了某件事，那可能只是校园生活拥有稳定的复现率。</p>
+      <div class="rule-controls" aria-label="切换规则档案">
+        <button id="rule-prev" type="button">上一份</button>
+        <button id="rule-next" type="button">下一份</button>
+      </div>
     </div>
   </aside>
 
@@ -1108,16 +1772,20 @@
     const ruleProgress = document.querySelector("#rule-progress");
     const ruleDrawer = document.querySelector("#rules");
     const ruleToggle = document.querySelector("#rule-toggle");
+    const rulePrev = document.querySelector("#rule-prev");
+    const ruleNext = document.querySelector("#rule-next");
     let activeCollege = "gxy";
     let activeRule = 0;
 
     const ruleDrafts = [
-      "规则内容留白 01",
-      "规则内容留白 02",
-      "规则内容留白 03",
-      "规则内容留白 04",
-      "规则内容留白 05",
-      "规则内容留白 06"
+      "第一条：当某项通知写着“自愿参加”时，请先观察班群。若辅导员连续发送三次相同的报名表，自愿的定义已经发生变化。",
+      "第二条：不要试图在系统开放的第一分钟选课。系统会先确认你的求知欲，再确认你的网络，最后告诉你人数已满。",
+      "第三条：若一份表格要求填写已经在另一份表格里填写过的信息，请保持镇定。这不是重复劳动，这是对记忆力与服从性的联合测验。",
+      "第四条：在群里提问前请确认答案不在群公告、文件、上一条消息、三个月前的截图，以及负责同学尚未形成的脑电波里。",
+      "第五条：遇到“原则上不允许”时，不要急于理解原则。先寻找往届案例。原则通常很坚定，直到它遇见一个熟练填写申请的人。",
+      "第六条：凌晨发布、早八截止的通知并非时间错误。它用于筛选真正与校园保持精神连接，并且从不关闭消息提醒的人。",
+      "第七条：如果某个流程只差最后一个章，请勿庆祝。最后一个章会要求你先证明前面所有章存在，并解释你为何需要最后一个章。",
+      "第八条：当会议主题是“精简会议”时，请携带充电器、水和第二天的请假理由。档案显示，此类会议往往拥有最完整的议程。"
     ];
 
     function renderRule() {
@@ -1186,10 +1854,19 @@
       ruleToggle.setAttribute("aria-expanded", String(open));
     });
 
-    window.setInterval(() => {
-      activeRule = (activeRule + 1) % ruleDrafts.length;
+    function changeRule(direction) {
+      activeRule = (activeRule + direction + ruleDrafts.length) % ruleDrafts.length;
       renderRule();
-    }, 5000);
+    }
+
+    rulePrev.addEventListener("click", () => changeRule(-1));
+    ruleNext.addEventListener("click", () => changeRule(1));
+
+    window.setInterval(() => {
+      if (!ruleDrawer.matches(":hover") && !ruleDrawer.matches(":focus-within")) {
+        changeRule(1);
+      }
+    }, 6500);
 
     setActiveCollege(activeCollege);
     renderRule();
